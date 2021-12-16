@@ -1,5 +1,33 @@
 # Empire
 
+## Galgo Notes!
+Install Python2 (using pyenv, in a docker or in any other way; just make sure that Empire is using the correct version in the shebang)
+Install M2Crypto, on macOS -
+```
+brew install openssl
+brew install swig
+
+env LDFLAGS="-L$(brew --prefix openssl)/lib" \
+CFLAGS="-I$(brew --prefix openssl)/include" \
+SWIG_FEATURES="-cpperraswarn -includeall -I$(brew --prefix openssl)/include" \
+pip install m2crypto
+```
+
+Install pip requierments that don't go cleanly through `./setup/install.sh`:
+```
+ python -m pip install pefile==2019.4.18
+ python -m pip install xlrd
+ python -m pip install xlutils
+ python -m pip install PyCrypto
+ python -m pip install requests
+ python -m pip install pyminifier
+ python -m pip install dropbox
+```
+
+Now run `./setup/install.sh` (try without sudo, unlike what the instructions say...)
+You may or may not need to use `sudo`, system python may be sudo-only.
+
+
 ## This project is no longer supported
 
 Empire is a post-exploitation framework that includes a pure-PowerShell2.0 Windows agent, and a pure Python 2.6/2.7 Linux/OS X agent. It is the merge of the previous PowerShell Empire and Python EmPyre projects. The framework offers cryptologically-secure communications and a flexible architecture. On the PowerShell side, Empire implements the ability to run PowerShell agents without needing powershell.exe, rapidly deployable post-exploitation modules ranging from key loggers to Mimikatz, and adaptable communications to evade network detection, all wrapped up in a usability-focused framework. PowerShell Empire premiered at [BSidesLV in 2015](https://www.youtube.com/watch?v=Pq9t59w0mUI) and Python EmPyre premeiered at HackMiami 2016.
